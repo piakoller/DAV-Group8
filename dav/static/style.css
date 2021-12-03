@@ -17,6 +17,7 @@ h1{
   
   .dropdown {
     position: absolute;
+    left: 75%;
     display: inline-block;
   }
   
@@ -52,3 +53,6 @@ h1{
 path:hover {
     fill: #FEB06A;
   }
+svg{
+  position: static;
+}
