@@ -4,8 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" href="/static/style.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link rel="stylesheet" href="/static/rSlider.min.css">
   <title>DAV Group 8 Project</title>
 </head>
 
@@ -46,25 +47,27 @@
      <div class="main-header">
        <div class="main-header__heading"></div>
        <div class="main-overview">
-            <div class="dropdown">
-              <button class="dropbtn">Choose a factor</button>
-              <div class="dropdown-content">
-                <a href="#" id="gdp">Logged GDP per capita</a>
-                <a href="#" id="social-support">Social Support</a>
-                <a href="#" id="healthy-life-expectancy">Healthy Life Expectancy</a>
-                <a href="#" id="choices">Freedom to Make Life Choices</a>
-                <a href="#" id="generosity">Generosity</a>
-                <a href="#" id="corruption">Perception of Corruption</a>
-                <a href="#" id="hdi">Human Development Index</a>
-                <a href="#" id="lifeexpectancy">Life Expectancy (years)</a>
-                <a href="#" id="gni">GNI (dollar / captita)</a>
-                <a href="#" id="expected-schooling">Expected Years of Schooling</a>
-                <a href="#" id="mean-schooling">Mean Years of Schooling</a>
-                <a href="#" id="population">Population Density (people / km²)</a>
-                <a href="#" id="unemployment">Unemployment rate (%)</a>
-                <a href="#" id="happiness">Happiness Score</a>
-              </div>
-        </div>
+          <div class="dropdown">
+            <button class="dropbtn">Choose a factor</button>
+            <div class="dropdown-content">
+              <a href="#" id="gdp">Logged GDP per capita</a>
+              <a href="#" id="social-support">Social Support</a>
+              <a href="#" id="healthy-life-expectancy">Healthy Life Expectancy</a>
+              <a href="#" id="choices">Freedom to Make Life Choices</a>
+              <a href="#" id="generosity">Generosity</a>
+              <a href="#" id="corruption">Perception of Corruption</a>
+              <a href="#" id="hdi">Human Development Index</a>
+              <a href="#" id="lifeexpectancy">Life Expectancy (years)</a>
+              <a href="#" id="gni">GNI (dollar / captita)</a>
+              <a href="#" id="expected-schooling">Expected Years of Schooling</a>
+              <a href="#" id="mean-schooling">Mean Years of Schooling</a>
+              <a href="#" id="population">Population Density (people / km²)</a>
+              <a href="#" id="unemployment">Unemployment rate (%)</a>
+              <a href="#" id="happiness">Happiness Score</a>
+            </div>
+            <div id="slider-container" style="margin-top: 50px;">
+            </div>
+        
       </div>
 
         {{svg}}
@@ -75,9 +78,11 @@
           integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://d3js.org/d3.v7.min.js">
         </script>
-        <script class="maps" src="/static/maps.js">
+        <script src="/static/maps.js">
         </script>
-        <script class="legend" src="/static/legend.js">
+        <script src="/static/legend.js">
+        </script>
+        <script src="/static/rSlider.min.js">
         </script>
         <script src="/static/main.js">
         </script>
