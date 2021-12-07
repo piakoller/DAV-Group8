@@ -1,4 +1,4 @@
-rank,country,gdp,social-support,healthy-life-expectancy,choices,generosity,corruption,hdi,life-expectancy,gni,expected-schooling,mean-schooling,population,unemployment,happiness
+rank,country,gdp,social-support,healthy-life-expectancy,choices,generosity,corruption,hdi,lifeexpectancy,gni,expected-schooling,mean-schooling,population,unemployment,happiness
 1,Finland,1.34,1.587,0.986,0.596,0.153,0.393,0.938,81.9,48511,19.4,12.8,18.1679586733351,6.69,7.769
 2,Denmark,1.383,1.573,0.996,0.592,0.252,0.41,0.94,80.9,58662,18.9,12.6,145.36055,5.02,7.6
 3,Norway,1.488,1.582,1.028,0.603,0.271,0.341,0.957,82.4,66494,18.1,12.9,14.6474418449234,3.69,7.554

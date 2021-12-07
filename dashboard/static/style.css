@@ -72,8 +72,6 @@ body {
   transform: translateX(0);
 }
 
-
-
 .sidenav__list {
   padding: 0;
   margin-top: 85px;
@@ -132,12 +130,13 @@ body {
 }
 
 .graph {
+  height: 460px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background-color: #82bef6;
+  background-color: #18191A;
   margin-bottom: 20px;
   -webkit-column-break-inside: avoid;
   padding: 24px;
@@ -145,18 +144,7 @@ body {
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
-/* Force varying heights to simulate dynamic content */
-.graph:first-child {
-  height: 485px;
-}
 
-.graph:nth-child(2) {
-  height: 200px;
-}
-
-.graph:nth-child(3) {
-  height: 265px;
-}
 
 /* Non-mobile styles, 750px breakpoint */
 @media only screen and (min-width: 46.875em) {
@@ -243,4 +231,14 @@ path:hover {
 }
 .maps{
   max-width: 50em;
+}
+
+.selectBoxes{
+  width: 500px;
+  height: 100px;
+}
+
+.selectBox{
+  width: 250px;
+  height: 100px;
 }
