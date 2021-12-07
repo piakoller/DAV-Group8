@@ -1,4 +1,5 @@
 textMap = {
+    "rank": "Rank",
     "gdp": "Logged GDP per capita",
     "social-support": "Social Support",
     "healthy-life-expectancy": "Healthy Life Expectancy",
