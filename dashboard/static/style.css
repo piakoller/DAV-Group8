@@ -105,7 +105,7 @@ body {
 }
 
 .geospatial-header {
-  font-size: 10pt !important;
+  /* font-size: 10pt !important; */
   display: flex;
   /* justify-content: space-between; */
   margin: 20px;
@@ -247,9 +247,9 @@ path:hover {
   top: 5%;
   right: 3%;
 }
-/* .maps{
-  max-width: 70em !important;
-} */
+.maps{
+  transform: scale(1.1);
+}
 
 .country-tooltip {
   /*width: auto;*/
