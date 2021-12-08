@@ -45,29 +45,30 @@
    
      <main class="main">
      <div class="main-header">
-       <div class="main-header__heading"></div>
+       <div class="main-header__heading">
+         <div id="slider-container">
+         </div>
+       </div>
        <div class="main-overview">
-        <div class="dropdown">
-          <button class="dropbtn">Choose a factor</button>
-          <div class="dropdown-content">
-            <a href="#" id="gdp">Logged GDP per capita</a>
-            <a href="#" id="social-support">Social Support</a>
-            <a href="#" id="healthy-life-expectancy">Healthy Life Expectancy</a>
-            <a href="#" id="choices">Freedom to Make Life Choices</a>
-            <a href="#" id="generosity">Generosity</a>
-            <a href="#" id="corruption">Perception of Corruption</a>
-            <a href="#" id="hdi">Human Development Index</a>
-            <a href="#" id="life-expectancy">Life Expectancy (years)</a>
-            <a href="#" id="gni">GNI (dollar / captita)</a>
-            <a href="#" id="expected-schooling">Expected Years of Schooling</a>
-            <a href="#" id="mean-schooling">Mean Years of Schooling</a>
-            <a href="#" id="population">Population Density (people / km²)</a>
-            <a href="#" id="unemployment">Unemployment rate (%)</a>
-            <a href="#" id="happiness">Happiness Score</a>
-          </div>
-        </div>
-        <div id="slider-container" style="margin-top: 50px;">
-        </div>
+          <div class="dropdown">
+            <button class="dropbtn">Choose a factor</button>
+            <div class="dropdown-content">
+              <a href="#" id="gdp">Logged GDP per capita</a>
+              <a href="#" id="social-support">Social Support</a>
+              <a href="#" id="healthy-life-expectancy">Healthy Life Expectancy</a>
+              <a href="#" id="choices">Freedom to Make Life Choices</a>
+              <a href="#" id="generosity">Generosity</a>
+              <a href="#" id="corruption">Perception of Corruption</a>
+              <a href="#" id="hdi">Human Development Index</a>
+              <a href="#" id="lifeexpectancy">Life Expectancy (years)</a>
+              <a href="#" id="gni">GNI (dollar / captita)</a>
+              <a href="#" id="expected-schooling">Expected Years of Schooling</a>
+              <a href="#" id="mean-schooling">Mean Years of Schooling</a>
+              <a href="#" id="population">Population Density (people / km²)</a>
+              <a href="#" id="unemployment">Unemployment rate (%)</a>
+              <a href="#" id="happiness">Happiness Score</a>
+            </div>
+        
       </div>
         <div id=tooltips></div>
 
@@ -87,19 +88,125 @@
         </script>
         <script src="/static/main.js">
         </script>
+      </div>
 
-     </div>
-   
-     <div class="main-graph">
-       <div class="graph">Graph 1</div>
-       <div class="graph">Graph 2</div>
-       <div class="graph">Graph 3</div>
-     </div>
-
+    </div>
      
+      
+
+      <div class="main-header">
+        <div id="bubble"></div>
+        <script src="/static/bubbleplot.js">
+        </script>
+      </div>
+
+      <div class="main-graph">
+        <div class="graph">
+
+          <div id="selectBoxes">
+            <div id="selectBox">
+              <label for="country1">Select Country #1</label>
+              <select name="country1" id="country1">
+                <option>Albania</option>
+                <option>Austria</option>
+                <option>Belarus</option>
+                <option>Belgium</option>
+                <option>Bosnia and Herzegovina</option>
+                <option>Bulgaria</option>
+                <option>Croatia</option>
+                <option>Cyprus</option>
+                <option>Czech Republic</option>
+                <option>Denmark</option>
+                <option>Estonia</option>
+                <option selected="selected">Finland</option>
+                <option>France</option>
+                <option>Germany</option>
+                <option>Greece</option>
+                <option>Hungary</option>
+                <option>Iceland</option>
+                <option>Ireland</option>
+                <option>Italy</option>
+                <option>Latvia</option>
+                <option>Lithuania</option>
+                <option>Luxembourg</option>
+                <option>Malta</option>
+                <option>Moldova</option>
+                <option>Montenegro</option>
+                <option>Netherlands</option>
+                <option>North Macedonia</option>
+                <option>Norway</option>
+                <option>Poland</option>
+                <option>Portugal</option>
+                <option>Romania</option>
+                <option>Russia</option>
+                <option>Serbia</option>
+                <option>Slovakia</option>
+                <option>Slovenia</option>
+                <option>Spain</option>
+                <option>Sweden</option>
+                <option>Switzerland</option>
+                <option>Turkey</option>
+                <option>Ukraine</option>
+                <option>United Kingdom</option>
+              </select>
+            </div>
+            <div id="selectBox">
+              <label for="country2">Select Country #2</label>
+              <select name="country2" id="country2">
+                <option>Albania</option>
+                <option>Austria</option>
+                <option>Belarus</option>
+                <option>Belgium</option>
+                <option>Bosnia and Herzegovina</option>
+                <option>Bulgaria</option>
+                <option>Croatia</option>
+                <option>Cyprus</option>
+                <option>Czech Republic</option>
+                <option selected="selected">Denmark</option>
+                <option>Estonia</option>
+                <option">Finland</option>
+                <option>France</option>
+                <option>Germany</option>
+                <option>Greece</option>
+                <option>Hungary</option>
+                <option>Iceland</option>
+                <option>Ireland</option>
+                <option>Italy</option>
+                <option>Latvia</option>
+                <option>Lithuania</option>
+                <option>Luxembourg</option>
+                <option>Malta</option>
+                <option>Moldova</option>
+                <option>Montenegro</option>
+                <option>Netherlands</option>
+                <option>North Macedonia</option>
+                <option>Norway</option>
+                <option>Poland</option>
+                <option>Portugal</option>
+                <option>Romania</option>
+                <option>Russia</option>
+                <option>Serbia</option>
+                <option>Slovakia</option>
+                <option>Slovenia</option>
+                <option>Spain</option>
+                <option>Sweden</option>
+                <option>Switzerland</option>
+                <option>Turkey</option>
+                <option>Ukraine</option>
+                <option>United Kingdom</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="radarChart"></div>
+          <script src="/static/radarChart.js"></script>   
+        </div>
+        <div class="graph">Test</div>
+      </div>
      </main>
    
 </div>
+
 
   
 </body>
