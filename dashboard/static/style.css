@@ -95,11 +95,13 @@ body {
 }
 
 .main-header {
+  font-size: 10pt !important;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   margin: 20px;
   padding: 20px;
   /* height: 100%; */
+  width: auto;
   object-fit: contain;
   background-color: #ffffff;
   color: slategray;
@@ -190,13 +192,14 @@ body {
   
   .dropdown {
     position: absolute;
-    left: 75%;
+    top: 15%;
+    right: 5%;
     display: inline-block;
   }
   
   .dropdown-content {
     display: none;
-    /*position: absolute;*/
+    position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
     box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.3);
@@ -228,19 +231,22 @@ path:hover {
   }
 #legend{
   position: absolute;
+  top: 5%;
+  right: 3%;
 }
-.maps{
-  max-width: 50em;
-}
+/* .maps{
+  max-width: 70em !important;
+} */
 
 .country-tooltip {
-  width: auto;
+  /*width: auto;*/
   max-height: 300px;
   padding: 10px;
   font-size: 12pt;
   background-color: black;
   border-radius: 6px;
-  position: absolute;
+  float: left;
+  position: relative;
   display: none;
   overflow: auto;
 }
