@@ -9,14 +9,14 @@ let active_factor = null
 let filterValues = {}
 
 const initUI = () => {
-    // use function(event){} syntax so that this has the correct binding
+
     $('.dropdown-content>a').click(function(event){
         event.preventDefault()
         active_factor = this.id
         colorMap()
     })
-
-    // create tooltips
+       
+       // create tooltips
     $('svg[id="map"]>path').each(function(){
         const name = $(this).attr('name')
         // add the tooltip to the DOM
@@ -59,6 +59,21 @@ const initUI = () => {
             roundUp(filterValues[factor].max)
         )
     })
+
+    // draw the radar chart
+    RadarChart('.radarChart', data, data, radarChartOptions)
+    // add event listeners
+    document.getElementById('country1').addEventListener('change', function() {
+        index =  countries[this.value];
+        radarChartOptions.indices[0] = index;
+	    RadarChart(".radarChart", data, filterData(), radarChartOptions);
+    });
+
+    document.getElementById('country2').addEventListener('change', function() {
+        index =  countries[this.value];
+        radarChartOptions.indices[1] = index;
+	    RadarChart(".radarChart", data, filterData(), radarChartOptions);
+    });
 }
 
 const roundDown = value => {
@@ -96,6 +111,7 @@ const createSlider = (factor, min, max) => {
             filterValues[factor].max = split[1]
             $(`#${factor}-slider-caption`).html(`${textMap[factor]}: ${roundDown(parseFloat(split[0]))} - ${roundUp(parseFloat(split[1].trim()))}`)
             colorMap()
+	        RadarChart(".radarChart", data, filterData(), radarChartOptions)
         }
     })
 }
