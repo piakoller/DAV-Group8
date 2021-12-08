@@ -24,8 +24,8 @@
     border-radius: 3px;
 }
 .rs-container .rs-selected {
-    background-color: #00b3bc;
-    border: 1px solid #00969b;
+    background-color: #F4B400;
+    border: 1px solid #F4B400;
     transition: all 0.2s linear;
     width: 0;
 }
