@@ -8,7 +8,7 @@ textMap = {
     "corruption": "Perception of Corruption",
     "hdi": "Human Development Index",
     "lifeexpectancy": "Life Expectancy (years)",
-    "gni": "GNI (dollar / captita)",
+    "gni": "GNI (dollar / capita)",
     "expected-schooling": "Expected Years of Schooling",
     "mean-schooling": "Mean Years of Schooling",
     "population": "Population Density (people / km²)",

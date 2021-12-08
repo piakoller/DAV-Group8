@@ -8,6 +8,16 @@ let active_factor = null
 // Filter values can be changed by the sliders
 let filterValues = {}
 
+var sliderFactors = [
+    "rank",
+    "lifeexpectancy",
+    "gni",
+    "expected-schooling",
+    "mean-schooling",
+    "unemployment",
+    "happiness"
+]
+
 const initUI = () => {
 
     $('.dropdown-content>a').click(function(event){
@@ -49,28 +59,30 @@ const initUI = () => {
 
     // create sliders
     Object.keys(filterValues).forEach(factor => {
-        $('#slider-container').append(`<p id="${factor}-slider-caption" >` + textMap[factor] + '</p>')
-        const id = factor + '-slider'
-        const input = document.createElement('input')
-        input.id = id
-        $('#slider-container').append(input)
-        createSlider(factor, 
-            roundDown(filterValues[factor].min),
-            roundUp(filterValues[factor].max)
-        )
+        if(sliderFactors.includes(factor))  {
+            $('#slider-container').append(`<p id="${factor}-slider-caption" >` + textMap[factor] + '</p>')
+            const id = factor + '-slider'
+            const input = document.createElement('input')
+            input.id = id
+            $('#slider-container').append(input)
+            createSlider(factor, 
+                roundDown(filterValues[factor].min),
+                roundUp(filterValues[factor].max)
+            )
+        }
     })
 
     // draw the radar chart
     RadarChart('.radarChart', data, data, radarChartOptions)
     // add event listeners
     document.getElementById('country1').addEventListener('change', function() {
-        index =  countries[this.value];
+        index =  parseInt(this.value);
         radarChartOptions.indices[0] = index;
 	    RadarChart(".radarChart", data, filterData(), radarChartOptions);
     });
 
     document.getElementById('country2').addEventListener('change', function() {
-        index =  countries[this.value];
+        index =  parseInt(this.value);
         radarChartOptions.indices[1] = index;
 	    RadarChart(".radarChart", data, filterData(), radarChartOptions);
     });
@@ -133,6 +145,11 @@ const colorMap = () => {
     filteredData.forEach(entry => {
         $(`svg[id="map"]>path[name="${entry.country}"]`).css('fill', colorScale(entry[active_factor]))
     })
+
+    var selectX = document.getElementById("xFeature").value;
+    var selectY = document.getElementById("yFeature").value;
+
+    PlotBubble(filteredData, selectX, selectY, false);
 }
 
 const init = d3.json('./api/data').then((d) => {

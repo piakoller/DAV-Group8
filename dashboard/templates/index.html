@@ -43,7 +43,47 @@
       <p>Visualization of happiness and its factors in Europe</p>
     </div>
 
-     <main class="geospatial">
+   <main class="geospatial">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v7.min.js">
+    </script>
+    <script src="/static/maps.js">
+    </script>
+    <script src="/static/legend.js">
+    </script>
+    <script src="/static/rSlider.min.js">
+    </script>
+    <script src="/static/rounding.js">
+    </script>
+    <script src="/static/main.js">
+    </script>
+    <div class="main-graph">
+      <div class="graph">
+        <div class="world">Happiness in the World</div>
+        <div class="ridge-plot"></div>
+        <script src="/static/ridgePlot.js"></script>
+      </div>
+      <div class="graph">
+
+        <div class="selectBoxes1">
+          <div class="selectBox1">
+            <label for="country1">Select Country #1</label>
+            <select name="country1" id="country1">
+            </select>
+          </div>
+          <div class="selectBox1">
+            <label for="country2">Select Country #2</label>
+            <select name="country2" id="country2">
+            </select>
+          </div>
+        </div>
+
+        <div class="radarChart"></div>
+        <script src="/static/radarChart.js"></script>   
+      </div>
+    </div>
+
      <div class="geospatial-header">
        <div class="geospatial-header__heading">
          <div id="slider-container">
@@ -73,21 +113,6 @@
         {{svg}}
 
         <svg id="legend"></svg>
-      
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="https://d3js.org/d3.v7.min.js">
-        </script>
-        <script src="/static/maps.js">
-        </script>
-        <script src="/static/legend.js">
-        </script>
-        <script src="/static/rSlider.min.js">
-        </script>
-        <script src="/static/rounding.js">
-        </script>
-        <script src="/static/main.js">
-        </script>
       </div>
 
     </div>
@@ -98,113 +123,15 @@
         <div class="bubble" id="bubble"></div>
         <script src="/static/bubbleplot.js">
         </script>
-      </div>
-
-      <div class="main-graph">
-        <div class="graph">
-
-          <div id="selectBoxes">
-            <div id="selectBox">
-              <label for="country1">Select Country #1</label>
-              <select name="country1" id="country1">
-                <option>Albania</option>
-                <option>Austria</option>
-                <option>Belarus</option>
-                <option>Belgium</option>
-                <option>Bosnia and Herzegovina</option>
-                <option>Bulgaria</option>
-                <option>Croatia</option>
-                <option>Cyprus</option>
-                <option>Czech Republic</option>
-                <option>Denmark</option>
-                <option>Estonia</option>
-                <option selected="selected">Finland</option>
-                <option>France</option>
-                <option>Germany</option>
-                <option>Greece</option>
-                <option>Hungary</option>
-                <option>Iceland</option>
-                <option>Ireland</option>
-                <option>Italy</option>
-                <option>Latvia</option>
-                <option>Lithuania</option>
-                <option>Luxembourg</option>
-                <option>Malta</option>
-                <option>Moldova</option>
-                <option>Montenegro</option>
-                <option>Netherlands</option>
-                <option>North Macedonia</option>
-                <option>Norway</option>
-                <option>Poland</option>
-                <option>Portugal</option>
-                <option>Romania</option>
-                <option>Russia</option>
-                <option>Serbia</option>
-                <option>Slovakia</option>
-                <option>Slovenia</option>
-                <option>Spain</option>
-                <option>Sweden</option>
-                <option>Switzerland</option>
-                <option>Turkey</option>
-                <option>Ukraine</option>
-                <option>United Kingdom</option>
-              </select>
-            </div>
-            <div id="selectBox">
-              <label for="country2">Select Country #2</label>
-              <select name="country2" id="country2">
-                <option>Albania</option>
-                <option>Austria</option>
-                <option>Belarus</option>
-                <option>Belgium</option>
-                <option>Bosnia and Herzegovina</option>
-                <option>Bulgaria</option>
-                <option>Croatia</option>
-                <option>Cyprus</option>
-                <option>Czech Republic</option>
-                <option selected="selected">Denmark</option>
-                <option>Estonia</option>
-                <option">Finland</option>
-                <option>France</option>
-                <option>Germany</option>
-                <option>Greece</option>
-                <option>Hungary</option>
-                <option>Iceland</option>
-                <option>Ireland</option>
-                <option>Italy</option>
-                <option>Latvia</option>
-                <option>Lithuania</option>
-                <option>Luxembourg</option>
-                <option>Malta</option>
-                <option>Moldova</option>
-                <option>Montenegro</option>
-                <option>Netherlands</option>
-                <option>North Macedonia</option>
-                <option>Norway</option>
-                <option>Poland</option>
-                <option>Portugal</option>
-                <option>Romania</option>
-                <option>Russia</option>
-                <option>Serbia</option>
-                <option>Slovakia</option>
-                <option>Slovenia</option>
-                <option>Spain</option>
-                <option>Sweden</option>
-                <option>Switzerland</option>
-                <option>Turkey</option>
-                <option>Ukraine</option>
-                <option>United Kingdom</option>
-              </select>
-            </div>
+        <div class="selectBoxes2">
+          <div class="selectBox2"><label for="yFeature">Feature for Y-Axis</label>
+            <select name="yFeature" id="yFeature">
+            </select>
           </div>
-
-          <div class="radarChart"></div>
-          <script src="/static/radarChart.js"></script>   
-        </div>
-        <div class="graph">
-          <div class="world">Happiness in the World</div>
-          <div class="ridge-plot"></div>
-          <script src="/static/ridgePlot.js"></script>
+          <div class="selectBox2"><label for="xFeature">Feature for X-Axis</label>
+            <select name="xFeature" id="xFeature">
+            </select>
+          </div>
         </div>
       </div>
 

@@ -16,6 +16,50 @@ const maxMap = {
 
 }
 
+const countriesMap = {
+	"Finland": 0,
+	"Denmark": 1,
+	"Norway": 2,
+	"Iceland": 3,
+	"Netherlands": 4,
+	"Switzerland": 5,
+	"Sweden": 6,
+	"Austria": 7,
+	"Luxembourg": 8,
+	"United Kingdom": 9,
+	"Ireland": 10,
+	"Germany": 11,
+	"Belgium": 12,
+	"Czech Republic": 13,
+	"Malta": 14,
+	"France": 15,
+	"Spain": 16,
+	"Italy": 17,
+	"Slovakia": 18,
+	"Poland": 19,
+	"Lithuania": 20,
+	"Slovenia": 21,
+	"Romania": 22,
+	"Cyprus": 23,
+	"Latvia": 24,
+	"Estonia": 25,
+	"Hungary": 26,
+	"Portugal": 27,
+	"Russia": 28,
+	"Serbia": 29,
+	"Moldova": 30,
+	"Montenegro": 31,
+	"Croatia": 32,
+	"Bosnia and Herzegovina": 33,
+	"Turkey": 34,
+	"Belarus": 35,
+	"Greece": 36,
+	"North Macedonia": 37,
+	"Bulgaria": 38,
+	"Albania": 39,
+	"Ukraine": 40
+};
+
 var margin2 = { top: 100, right: 100, bottom: 100, left: 100 },
 	width2 = Math.min(400, window.innerWidth - 10) - margin2.left - margin2.right,
 	height2 = Math.min(width2, window.innerHeight - margin2.top - margin2.bottom - 20);
@@ -35,7 +79,7 @@ radarChartOptions = {
 	levels: 5,
 	roundStrokes: true,
 	color: color,
-	indices: [0, 1]
+	indices: [0, 40]
 };
 
 
@@ -48,8 +92,35 @@ radarChartOptions = {
 
 function RadarChart(id, data, filteredData, options) {
 
+  	let countries_list = data.map(d => d.country);
+  	countries_list = countries_list.sort();
+
+  	var hdi_list = data.map(d => d.hdi);
+    var lifeexpectancy_list = data.map(d => d.lifeexpectancy);
+    var gni_list = data.map(d => d.gni);
+    var expected_schooling_list = data.map(d => d.expected_schooling);
+    var mean_schooling_list = data.map(d => d.mean_schooling);
+    var population_list = data.map(d => d.population);
+    var unemployment_list = data.map(d => d.unemployment);
+    var happiness_list = data.map(d => d.happiness);
+
+
+  	var country1 = document.getElementById("country1");
+  	var country2 = document.getElementById("country2");
+
+  	if(country1.options.length == 0) {
+		for(var index=0;index<countries_list.length;index++) {
+		  country1.options[country1.options.length] = new Option(countries_list[index], countriesMap[countries_list[index]]);
+		  country2.options[country2.options.length] = new Option(countries_list[index], countriesMap[countries_list[index]]);
+		}
+
+		country1.value = 0;
+		country2.value = 40;
+
+  	}
+
 	var cfg = {
-		w: 400,				//Width of the circle
+		w: 500,				//Width of the circle
 		h: 400,				//Height of the circle
 		margin: { top: 20, right: 20, bottom: 20, left: 20 }, //The margins of the SVG
 		levels: 3,				//How many levels or inner circles should there be drawn
@@ -62,7 +133,7 @@ function RadarChart(id, data, filteredData, options) {
 		strokeWidth: 2, 		//The width of the stroke around each blob
 		roundStrokes: false,	//If true the area and stroke will follow a round path (cardinal-closed)
 		color: d3.scaleOrdinal(d3.schemeCategory10),	//Color function
-		indices: [0, 1] //The indices of the two countries that should be displayed
+		indices: [0, 40] //The indices of the two countries that should be displayed
 	};
 
 	//Put all of the options into a variable called cfg
@@ -74,8 +145,7 @@ function RadarChart(id, data, filteredData, options) {
 
 	var newArray = [];
 
-
-	let total_hdi = 0;
+   	let total_hdi = 0;
 	let total_lifeexpectancy = 0;
 	let total_gni = 0;
 	let total_expected_schooling = 0;
@@ -84,9 +154,22 @@ function RadarChart(id, data, filteredData, options) {
 	let total_unemployment = 0;
 	let total_happiness = 0;
 
+	var max_hdi = Math.max.apply(Math, hdi_list);
+	var max_lifeexpectancy = Math.max.apply(Math, lifeexpectancy_list);
+	var max_gni = Math.max.apply(Math, gni_list);
+	var max_expected_schooling = Math.max.apply(Math, expected_schooling_list);
+	var max_mean_schooling = Math.max.apply(Math, mean_schooling_list);
+	var max_population = Math.max.apply(Math, population_list);
+	var max_unemployment = Math.max.apply(Math, unemployment_list);
+	var max_happiness = Math.max.apply(Math, happiness_list);
+
+	console.log(options);
+
 	for (let i = 0; i < data.length; i++) {
-		if (cfg.indices.includes(i)) {
+		if (options.indices.includes(i)) {
+
 			var item = data[i];
+
 			const hdi = item["hdi"] / maxMap["hdi"];
 			const lifeexpectancy = item["lifeexpectancy"] / maxMap["lifeexpectancy"];
 			const gni = item["gni"] / maxMap["gni"];
@@ -188,7 +271,7 @@ function RadarChart(id, data, filteredData, options) {
 	var svg = d3.select(id).append("svg")
 		.attr("width", cfg.w + cfg.margin.left + cfg.margin.right)
 		.attr("height", cfg.h + cfg.margin.top + cfg.margin.bottom)
-		.attr("class", "radar" + id);
+		.attr("class", "radarchart");
 	//Append a g element		
 	var g = svg.append("g")
 		.attr("transform", "translate(" + (cfg.w / 2 + cfg.margin.left) + "," + (cfg.h / 2 + cfg.margin.top) + ")");
@@ -409,46 +492,3 @@ function RadarChart(id, data, filteredData, options) {
 
 }//RadarChart
 
-const countries = {
-	"Finland": 0,
-	"Denmark": 1,
-	"Norway": 2,
-	"Iceland": 3,
-	"Netherlands": 4,
-	"Switzerland": 5,
-	"Sweden": 6,
-	"Austria": 7,
-	"Luxembourg": 8,
-	"United Kingdom": 9,
-	"Ireland": 10,
-	"Germany": 11,
-	"Belgium": 12,
-	"Czech Republic": 13,
-	"Malta": 14,
-	"France": 15,
-	"Spain": 16,
-	"Italy": 17,
-	"Slovakia": 18,
-	"Poland": 19,
-	"Lithuania": 20,
-	"Slovenia": 21,
-	"Romania": 22,
-	"Cyprus": 23,
-	"Latvia": 24,
-	"Estonia": 25,
-	"Hungary": 26,
-	"Portugal": 27,
-	"Russia": 28,
-	"Serbia": 29,
-	"Moldova": 30,
-	"Montenegro": 31,
-	"Croatia": 32,
-	"Bosnia and Herzegovina": 33,
-	"Turkey": 34,
-	"Belarus": 35,
-	"Greece": 36,
-	"North Macedonia": 37,
-	"Bulgaria": 38,
-	"Albania": 39,
-	"Ukraine": 40
-};

@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 const margine = {top: 110, right: 120, bottom: 50, left:190},
-    widthe = document.querySelector('.ridge-plot').clientWidth - margine.left - margine.right,
-    heighte = document.querySelector('.ridge-plot').clientHeight - margine.top - margine.bottom;
+    widthe = 800 - margine.left - margine.right,
+    heighte = 400 - margine.top - margine.bottom;
 
 // append the svge object to the body of the page
 const svge = d3.select(".ridge-plot")
@@ -32,7 +32,7 @@ d3.csv("https://raw.githubusercontent.com/CemZoun/testdemerde/master/data/RidgeD
   //   .domain([4,7.5])
   //   .interpolator(d3.interpolateViridis);
 
-  const myColor = d3.scaleOrdinal (['#4285F4','#DB4437', '#F4B400', '#4285F4', '#0F9D58', '#DB4437'])
+  const myColor = d3.scaleOrdinal(['#4285F4','#DB4437', '#F4B400', '#4285F4', '#0F9D58', '#DB4437']);
 
   // Add X axis
   const x = d3.scaleLinear()
