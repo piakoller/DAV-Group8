@@ -55,7 +55,7 @@ d3.json('./api/data').then((d) => {
 
   // Add a scale for bubble color
   const myColor = d3.scaleOrdinal()
-    .domain([0, 1 , 2, 3, 4, 5])
+    .domain([0, 1 , 2, 3, 4])
     .range(d3.schemeSet1);
 
 
@@ -106,7 +106,7 @@ d3.json('./api/data').then((d) => {
     // reduce opacity of all groups
     d3.selectAll(".bubbles").style("opacity", .05)
     // expect the one that is hovered
-    d3.selectAll(".bubbles " + d).style("opacity", 1)
+    d3.selectAll(".bubbles.bubbles-" + d).style("opacity", 1)
   }
 
   // And when it is not hovered anymore
@@ -124,11 +124,11 @@ d3.json('./api/data').then((d) => {
     .selectAll("dot")
     .data(data)
     .join("circle")
-      .attr("class", function(d) { return "bubbles " + Math.floor(d.rank / 28)})
+      .attr("class", function(d) { return "bubbles bubbles-" + Math.floor(d.rank / 39)})
       .attr("cx", d => x(d.gni))
       .attr("cy", d => y(d.lifeexpectancy))
       .attr("r", d => z(d.happiness))
-      .style("fill", d => myColor(Math.floor(d.rank / 28)))
+      .style("fill", d => myColor(Math.floor(d.rank / 39)))
       .attr("stroke", "black")
     // -3- Trigger the functions for hover
     .on("mouseover", showTooltip )
@@ -187,7 +187,7 @@ d3.json('./api/data').then((d) => {
 
     // Add one dot in the legend for each name.
     const size = 20
-    const allgroups = [0,1,2,3,4,5]
+    const allgroups = [0,1,2,3,4]
     svg.selectAll("myrect")
       .data(allgroups)
       .join("circle")
@@ -206,7 +206,7 @@ d3.json('./api/data').then((d) => {
         .attr("x", 1000 + size*.8)
         .attr("y", (d,i) =>  i * (size + 5) + (size/2)) // 100 is where the first dot appears. 25 is the distance between dots
         .style("fill", d => myColor(d))
-        .text(d => d)
+        .text(d => `${(20*(5-d)).toString()} - ${(20*(4-d)).toString()} %`)
         .attr("text-anchor", "left")
         .style("alignment-baseline", "middle")
         .on("mouseover", highlight)
