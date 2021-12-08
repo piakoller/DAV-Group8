@@ -11,6 +11,7 @@
     font-family: Arial, Helvetica, sans-serif;
     height: 45px;
     position: relative;
+    z-index: 1;
 }
 .rs-container .rs-bg, .rs-container .rs-selected {
     background-color: #eee;

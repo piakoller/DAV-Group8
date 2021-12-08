@@ -16,21 +16,17 @@ var margin2 = {top: 100, right: 100, bottom: 100, left: 100},
 var color = d3.scaleOrdinal()
 .range(["#EDC951","#CC333F","#00A0B0"]);
 
-var radarChartOptions = {
-w: width2,
-h: height2,
-margin: margin2,
-maxValue: 0.5,
-levels: 5,
-roundStrokes: true,
-color: color,
-indices: [0, 1]
+radarChartOptions = {
+	w: width2,
+	h: height2,
+	margin: margin2,
+	maxValue: 0.5,
+	levels: 5,
+	roundStrokes: true,
+	color: color,
+	indices: [0, 1]
 };
 
-d3.json('./api/data').then((d) => {
-//Call function to draw the Radar chart
-	RadarChart(".radarChart", d, radarChartOptions);
-})
 
 /////////////////////////////////////////////////////////
 /////////////// The Radar Chart Function ////////////////
@@ -39,7 +35,7 @@ d3.json('./api/data').then((d) => {
 /////////// Inspired by the code of alangrafu ///////////
 /////////////////////////////////////////////////////////
 	
-function RadarChart(id, data, options) {
+function RadarChart(id, data, filteredData, options) {
 
 	var cfg = {
 	 w: 400,				//Width of the circle
@@ -68,26 +64,52 @@ function RadarChart(id, data, options) {
 	var newArray = [];
 
 
-    total_hdi = 0;
-    total_lifeexpectancy = 0;
-    total_gni = 0;
-    total_expected_schooling = 0;
-    total_mean_schooling = 0;
-    total_population = 0;
-    total_unemployment = 0;
-    total_happiness = 0;
+    let total_hdi = 0;
+    let total_lifeexpectancy = 0;
+    let total_gni = 0;
+    let total_expected_schooling = 0;
+    let total_mean_schooling = 0;
+    let total_population = 0;
+    let total_unemployment = 0;
+    let total_happiness = 0;
 
+	for (let i = 0; i < data.length; i++){
+		if(cfg.indices.includes(i)) {
+			var item = data[i];
+			const hdi = item["hdi"] / 0.957;
+			const lifeexpectancy = item["lifeexpectancy"] / 83.8;
+			const gni = item["gni"] / 72712;
+			const expected_schooling = item["expected-schooling"] / 19.8;
+			const mean_schooling = item["mean-schooling"] / 14.2;
+			const population = item["population"] / 1575.19375;
+			const unemployment = item["unemployment"] / 17.31;
+			const happiness = item["happiness"] / 7.769;
 
-	for(var i=0;i<data.length;i++) {
-	    var item = data[i];
-	    hdi = item["hdi"] / 0.957;
-	    lifeexpectancy = item["lifeexpectancy"] / 83.8;
-	    gni = item["gni"] / 72712;
-	    expected_schooling = item["expected-schooling"] / 19.8;
-	    mean_schooling = item["mean-schooling"] / 14.2;
-	    population = item["population"] / 1575.19375;
-	    unemployment = item["unemployment"] / 17.31;
-	    happiness = item["happiness"] / 7.769;
+			newItem = [
+				{axis:"HDI",value:hdi},
+				{axis:"lifeexpectancy",value:lifeexpectancy},
+				{axis:"gni",value:gni},
+				{axis:"expected_schooling",value:expected_schooling},
+				{axis:"mean_schooling",value:mean_schooling},
+				{axis:"population",value:population},
+				{axis:"unemployment",value:unemployment},
+				{axis:"happiness",value:happiness}
+			]
+
+	    	newArray.push(newItem);
+		}
+	}
+
+	for(var i=0;i<filteredData.length;i++) {
+		var item = filteredData[i];
+		const hdi = item["hdi"] / 0.957;
+		const lifeexpectancy = item["lifeexpectancy"] / 83.8;
+		const gni = item["gni"] / 72712;
+		const expected_schooling = item["expected-schooling"] / 19.8;
+		const mean_schooling = item["mean-schooling"] / 14.2;
+		const population = item["population"] / 1575.19375;
+		const unemployment = item["unemployment"] / 17.31;
+		const happiness = item["happiness"] / 7.769;
 
 	    total_hdi += hdi;
 	    total_lifeexpectancy += lifeexpectancy;
@@ -98,31 +120,16 @@ function RadarChart(id, data, options) {
 	    total_unemployment += unemployment;
 	    total_happiness += happiness;
 
-	    newItem = [
-		    {axis:"HDI",value:hdi},
-		    {axis:"lifeexpectancy",value:lifeexpectancy},
-		    {axis:"gni",value:gni},
-		    {axis:"expected_schooling",value:expected_schooling},
-		    {axis:"mean_schooling",value:mean_schooling},
-		    {axis:"population",value:population},
-		    {axis:"unemployment",value:unemployment},
-		    {axis:"happiness",value:happiness}
-		    ]
-
-		if(cfg.indices.includes(i)) {
-	    	newArray.push(newItem);
-		}
-
 	};
 
-	avg_hdi = total_hdi / data.length;
-    avg_lifeexpectancy = total_lifeexpectancy / data.length;
-    avg_gni = total_gni / data.length;
-    avg_expected_schooling = total_expected_schooling / data.length;
-    avg_mean_schooling = total_mean_schooling / data.length;
-    avg_population = total_population / data.length;
-    avg_unemployment = total_unemployment / data.length;
-    avg_happiness = total_happiness / data.length;
+	const avg_hdi = total_hdi / filteredData.length;
+    const avg_lifeexpectancy = total_lifeexpectancy / filteredData.length;
+    const avg_gni = total_gni / filteredData.length;
+    const avg_expected_schooling = total_expected_schooling / filteredData.length;
+    const avg_mean_schooling = total_mean_schooling / filteredData.length;
+    const avg_population = total_population / filteredData.length;
+    const avg_unemployment = total_unemployment / filteredData.length;
+    const avg_happiness = total_happiness / filteredData.length;
 
     avgItem = [
 	    {axis:"HDI",value:avg_hdi},
@@ -140,11 +147,10 @@ function RadarChart(id, data, options) {
 		newArray[0] = newArray[1];
 		newArray[1] = temp;
 	}
+
     newArray.push(avgItem);
 
 	data = newArray;
-
-	console.log(data);
 	
 	//If the supplied maxValue is smaller than the actual one, replace by the max in the data
 	var maxValue = Math.max(cfg.maxValue, d3.max(data, function(i){return d3.max(i.map(function(o){return o.value;}))}));
@@ -391,7 +397,7 @@ function RadarChart(id, data, options) {
 	
 }//RadarChart
 
-var countries = {
+const countries = {
   "Finland": 0,
   "Denmark": 1,
   "Norway": 2,
@@ -434,28 +440,3 @@ var countries = {
   "Albania": 39,
   "Ukraine": 40
 };
-
-
-document.getElementById('country1').addEventListener('change', function() {
-  index =  countries[this.value];
-
-  radarChartOptions.indices[0] = index;
-
-  console.log(radarChartOptions)
-
-  d3.json('./api/data').then((d) => {
-  //Call function to draw the Radar chart
-	RadarChart(".radarChart", d, radarChartOptions);
-  })
-});
-
-document.getElementById('country2').addEventListener('change', function() {
-  index =  countries[this.value];
-
-  radarChartOptions.indices[1] = index;
-
-  d3.json('./api/data').then((d) => {
-  //Call function to draw the Radar chart
-	RadarChart(".radarChart", d, radarChartOptions);
-  })
-});
