@@ -5,7 +5,7 @@ h1{
 body {
   margin: 0;
   padding: 0;
-  color: #fff;
+  color: #eeeeee;
   /* box-sizing: border-box; */
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -19,7 +19,7 @@ body {
 
 /* Assign grid instructions to our parent grid container, mobile-first (hide the sidenav) */
 .grid-container {
-  display: grid;
+  /* display: grid; */
   grid-template-columns: 1fr;
   grid-template-rows: 1fr ;
   grid-template-areas:
@@ -44,16 +44,16 @@ body {
 }
 
 /* Give every child element its grid name */
-.header {
+/* .header {
   grid-area: header;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
   background-color: #648ca6;
-}
+} */
 
-.sidenav {
+/* .sidenav {
   grid-area: sidenav;
   display: flex;
   flex-direction: column;
@@ -86,9 +86,19 @@ body {
 .sidenav__list-item:hover {
   background-color: rgba(255, 255, 255, 0.2);
   cursor: pointer;
+} */
+
+.header {
+  padding: 20px;
+  text-align: center;
+  background: #394263;
+  color: white;
+  font-size: 30px;
+  box-shadow: 0px 8px 10px 10px rgba(0, 0, 0, 0.3) !important;
 }
 
 .geospatial {
+  padding: 5px;
   grid-area: main;
   background-color: #eeeeee;
  
@@ -152,7 +162,7 @@ body {
 @media only screen and (min-width: 46.875em) {
   /* Show the sidenav */
   .grid-container {
-    grid-template-columns: 240px 1fr;
+    /* grid-template-columns: 240px 1fr; */
     grid-template-areas:
       "sidenav header"
       "sidenav main"
@@ -191,8 +201,11 @@ body {
   }
   
   .dropdown {
-    position: absolute;
+    /* position: absolute;
     top: 15%;
+    right: 5%; */
+    position: absolute;
+    top:31%;
     right: 5%;
     display: inline-block;
   }
@@ -230,7 +243,7 @@ path:hover {
     fill: #FEB06A;
   }
 #legend{
-  position: absolute;
+  /* position: absolute; */
   top: 5%;
   right: 3%;
 }
