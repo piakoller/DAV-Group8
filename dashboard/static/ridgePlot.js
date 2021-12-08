@@ -28,15 +28,18 @@ d3.csv("https://raw.githubusercontent.com/CemZoun/testdemerde/master/data/RidgeD
   }
 
   // Create a color scale using these means.
-  const myColor = d3.scaleSequential()
-    .domain([4,7.5])
-    .interpolator(d3.interpolateViridis);
+  // const myColor = d3.scaleSequential()
+  //   .domain([4,7.5])
+  //   .interpolator(d3.interpolateViridis);
+
+  const myColor = d3.scaleOrdinal (['#4285F4','#DB4437', '#F4B400', '#4285F4', '#0F9D58', '#DB4437'])
 
   // Add X axis
   const x = d3.scaleLinear()
     .domain([2,8])
     .range([ 0, widthe ]);
   svge.append("g")
+    .style('font-size','10pt')    //PIA ITS HERE
     .attr("class", "xAxis")
     .attr("transform", "translate(0," + heighte + ")")
     .call(d3.axisBottom(x).tickValues([4,6,8]).tickSize(-heighte) )
@@ -60,6 +63,7 @@ d3.csv("https://raw.githubusercontent.com/CemZoun/testdemerde/master/data/RidgeD
     .range([0, heighte])
     .paddingInner(1)
   svge.append("g")
+    .style('font-size','12pt')
     .call(d3.axisLeft(yName).tickSize(0))
     .select(".domain").remove()
 
