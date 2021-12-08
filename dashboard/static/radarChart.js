@@ -43,7 +43,7 @@ function RadarChart(id, data, filteredData, options) {
 	 margin: {top: 20, right: 20, bottom: 20, left: 20}, //The margins of the SVG
 	 levels: 3,				//How many levels or inner circles should there be drawn
 	 maxValue: 0, 			//What is the value that the biggest circle will represent
-	 labelFactor: 1.25, 	//How much farther than the radius of the outer circle should the labels be placed
+	 labelFactor: 1.5, 	//How much farther than the radius of the outer circle should the labels be placed
 	 wrapWidth: 60, 		//The number of pixels after which a label needs to be given a new line
 	 opacityArea: 0.35, 	//The opacity of the area of the blob
 	 dotRadius: 4, 			//The size of the colored circles of each blog
@@ -86,11 +86,11 @@ function RadarChart(id, data, filteredData, options) {
 			const happiness = item["happiness"] / 7.769;
 
 			newItem = [
-				{axis:"HDI",value:hdi},
+				{axis:"hdi",value:hdi},
 				{axis:"lifeexpectancy",value:lifeexpectancy},
 				{axis:"gni",value:gni},
-				{axis:"expected_schooling",value:expected_schooling},
-				{axis:"mean_schooling",value:mean_schooling},
+				{axis:"expected-schooling",value:expected_schooling},
+				{axis:"mean-schooling",value:mean_schooling},
 				{axis:"population",value:population},
 				{axis:"unemployment",value:unemployment},
 				{axis:"happiness",value:happiness}
@@ -132,11 +132,11 @@ function RadarChart(id, data, filteredData, options) {
     const avg_happiness = total_happiness / filteredData.length;
 
     avgItem = [
-	    {axis:"HDI",value:avg_hdi},
+	    {axis:"hdi",value:avg_hdi},
 	    {axis:"lifeexpectancy",value:avg_lifeexpectancy},
 	    {axis:"gni",value:avg_gni},
-	    {axis:"expected_schooling",value:avg_expected_schooling},
-	    {axis:"mean_schooling",value:avg_mean_schooling},
+	    {axis:"expected-schooling",value:avg_expected_schooling},
+	    {axis:"mean-schooling",value:avg_mean_schooling},
 	    {axis:"population",value:avg_population},
 	    {axis:"unemployment",value:avg_unemployment},
 	    {axis:"happiness",value:avg_happiness}
@@ -254,8 +254,8 @@ function RadarChart(id, data, filteredData, options) {
 	   	.attr("fill", "#737373")
 		.attr("dy", "0.35em")
 		.attr("x", function(d, i){ return rScale(maxValue * cfg.labelFactor) * Math.cos(angleSlice*i - Math.PI/2); })
-		.attr("y", function(d, i){ return rScale(maxValue * cfg.labelFactor) * Math.sin(angleSlice*i - Math.PI/2); })
-		.text(function(d){return d})
+		.attr("y", function(d, i){ return -10 + rScale(maxValue * cfg.labelFactor) * Math.sin(angleSlice*i - Math.PI/2); })
+		.text(function(d){return textMap[d]})
 		.call(wrap, cfg.wrapWidth);
 
 	/////////////////////////////////////////////////////////
