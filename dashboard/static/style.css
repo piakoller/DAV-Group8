@@ -198,6 +198,7 @@ body {
     font-size: 16px;
     border: none;
     border-radius: 15px;
+    z-index: 2;
   }
   
   .dropdown {
@@ -208,6 +209,7 @@ body {
     top:31%;
     right: 5%;
     display: inline-block;
+    z-index: 2;
   }
   
   .dropdown-content {
@@ -287,4 +289,9 @@ path:hover {
 }
 label {
   color: black;
+}
+.bubble{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
