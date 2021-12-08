@@ -91,7 +91,8 @@ body {
 .header {
   padding: 20px;
   text-align: center;
-  background: #394263;
+  background: #F4B400;
+  text-shadow: rgb(0, 0, 0) 0.05em 0.05em 0.1em;
   color: white;
   font-size: 30px;
   box-shadow: 0px 8px 10px 10px rgba(0, 0, 0, 0.3) !important;
@@ -154,6 +155,12 @@ body {
   padding: 24px;
   box-sizing: border-box;
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  color: black;
+}
+
+.ridge-plot{
+  height: 100%;
+  width: 100%;
 }
 
 
@@ -192,10 +199,11 @@ body {
 }
 
 .dropbtn {
-    background-color: #5D6C89;
+    background-color: #F4B400;
     color: white;
+    text-shadow: rgb(0, 0, 0) 0.05em 0.05em 0.1em;
     padding: 20px;
-    font-size: 16px;
+    font-size: 20px !important;
     border: none;
     border-radius: 15px;
     z-index: 2;
@@ -239,10 +247,11 @@ body {
   .dropdown:hover .dropbtn {
       background-color: #f1f1f1;
       color: black;
+      text-shadow: none;
     }
 
 path:hover {
-    fill: #FEB06A;
+    fill: #F4B400;
   }
 #legend{
   /* position: absolute; */
@@ -266,6 +275,7 @@ path:hover {
   overflow: auto;
   box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.3);
   border-radius: 15px;
+  z-index: 3;
 }
 .tooltip-title {
   font-weight: bold;
@@ -289,6 +299,10 @@ path:hover {
 }
 label {
   color: black;
+}
+
+.xAxis line {
+  stroke: #B8B8B8;
 }
 .bubble{
   display: block;
