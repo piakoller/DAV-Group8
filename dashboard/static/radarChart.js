@@ -3,7 +3,18 @@
 
 ////////////////////////////////////////////////////////////// 
 //////////////////////// Set-Up ////////////////////////////// 
-////////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////////
+const maxMap = {
+	"hdi": 0.957,
+	"lifeexpectancy": 83.8,
+	"gni": 72712,
+	"expected-schooling": 19.8,
+	"mean-schooling": 14.2,
+	"population": 1575.19375,
+	"unemployment": 17.31,
+	"happiness": 7.769,
+
+}
 
 var margin2 = { top: 100, right: 100, bottom: 100, left: 100 },
 	width2 = Math.min(400, window.innerWidth - 10) - margin2.left - margin2.right,
@@ -76,14 +87,14 @@ function RadarChart(id, data, filteredData, options) {
 	for (let i = 0; i < data.length; i++) {
 		if (cfg.indices.includes(i)) {
 			var item = data[i];
-			const hdi = item["hdi"] / 0.957;
-			const lifeexpectancy = item["lifeexpectancy"] / 83.8;
-			const gni = item["gni"] / 72712;
-			const expected_schooling = item["expected-schooling"] / 19.8;
-			const mean_schooling = item["mean-schooling"] / 14.2;
-			const population = item["population"] / 1575.19375;
-			const unemployment = item["unemployment"] / 17.31;
-			const happiness = item["happiness"] / 7.769;
+			const hdi = item["hdi"] / maxMap["hdi"];
+			const lifeexpectancy = item["lifeexpectancy"] / maxMap["lifeexpectancy"];
+			const gni = item["gni"] / maxMap["gni"];
+			const expected_schooling = item["expected-schooling"] / maxMap["expected-schooling"];
+			const mean_schooling = item["mean-schooling"] / maxMap["mean-schooling"];
+			const population = item["population"] / maxMap["population"];
+			const unemployment = item["unemployment"] / maxMap["unemployment"];
+			const happiness = item["happiness"] / maxMap["happiness"];
 
 			newItem = [
 				{ axis: "hdi", value: hdi },
@@ -342,14 +353,15 @@ function RadarChart(id, data, filteredData, options) {
 		.attr("cy", function (d, i) { return rScale(d.value) * Math.sin(angleSlice * i - Math.PI / 2); })
 		.style("fill", "none")
 		.style("pointer-events", "all")
-		.on("mouseover", function (d, i) {
+		.on("mouseover", function (event, datum) {
 			newX = parseFloat(d3.select(this).attr('cx')) - 10;
 			newY = parseFloat(d3.select(this).attr('cy')) - 10;
+			console.log(datum)
 
 			tooltip
 				.attr('x', newX)
 				.attr('y', newY)
-				.text(Format(d.value))
+				.text(roundDown(datum.value * maxMap[datum.axis]))
 				.transition().duration(200)
 				.style('opacity', 1);
 		})
