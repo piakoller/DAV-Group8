@@ -45,22 +45,28 @@ const initUI = () => {
 
     $('svg[id="map"]>path').mouseleave(function(){
         clearTimeout(tooltipTimer)
-        // const name = $(this).attr('name')
-        // $('#' + name.replaceAll(' ', '-') + '-tooltip').css('display', 'none')
     })
 
     // create sliders
     Object.keys(filterValues).forEach(factor => {
-        $('#slider-container').append('<p>' + textMap[factor] + '</p>')
+        $('#slider-container').append(`<p id="${factor}-slider-caption" >` + textMap[factor] + '</p>')
         const id = factor + '-slider'
         const input = document.createElement('input')
         input.id = id
         $('#slider-container').append(input)
         createSlider(factor, 
-            Math.floor((filterValues[factor].min + Number.EPSILON) * 100) / 100,
-            Math.ceil((filterValues[factor].max + Number.EPSILON) * 100) / 100
+            roundDown(filterValues[factor].min),
+            roundUp(filterValues[factor].max)
         )
     })
+}
+
+const roundDown = value => {
+    return Math.floor((value + Number.EPSILON) * 100) / 100
+}
+
+const roundUp = value => {
+    return Math.ceil((value + Number.EPSILON) * 100) / 100
 }
 
 const generateTooltipHTML = (name, div) => {
@@ -88,6 +94,7 @@ const createSlider = (factor, min, max) => {
             const split = values.split(',')
             filterValues[factor].min = split[0]
             filterValues[factor].max = split[1]
+            $(`#${factor}-slider-caption`).html(`${textMap[factor]}: ${roundDown(parseFloat(split[0]))} - ${roundUp(parseFloat(split[1].trim()))}`)
             colorMap()
         }
     })
