@@ -16,6 +16,39 @@ const initUI = () => {
         colorMap()
     })
 
+    // create tooltips
+    $('svg[id="map"]>path').each(function(){
+        const name = $(this).attr('name')
+        // add the tooltip to the DOM
+        const div = document.createElement('div')
+        generateTooltipHTML(name, div)
+        div.id = name.replaceAll(' ', '-') + '-tooltip'
+        const pos = $(this).position()
+        div.style.left = pos.left + 'px'
+        div.style.top = pos.top + 'px'
+        div.classList.add('country-tooltip')
+        div.addEventListener('mouseleave', function(){
+            $('#' + name.replaceAll(' ', '-') + '-tooltip').css('display', 'none')
+        })
+        $('#tooltips').append(div)
+    })
+
+    let tooltipTimer = null
+    const delay = 500
+    // add event listeners to the svg paths
+    $('svg[id="map"]>path').mouseover(function(){
+        tooltipTimer = setTimeout(() => {
+            const name = $(this).attr('name')
+            $('#' + name.replaceAll(' ', '-') + '-tooltip').css('display', 'block')
+        }, delay)
+    })
+
+    $('svg[id="map"]>path').mouseleave(function(){
+        clearTimeout(tooltipTimer)
+        // const name = $(this).attr('name')
+        // $('#' + name.replaceAll(' ', '-') + '-tooltip').css('display', 'none')
+    })
+
     // create sliders
     Object.keys(filterValues).forEach(factor => {
         $('#slider-container').append('<p>' + textMap[factor] + '</p>')
@@ -28,6 +61,17 @@ const initUI = () => {
             Math.ceil((filterValues[factor].max + Number.EPSILON) * 100) / 100
         )
     })
+}
+
+const generateTooltipHTML = (name, div) => {
+    let html = `<p class="tooltip-title">${name}</p>`
+    const row = data.find(value => value.country === name)
+    Object.keys(row).forEach(key => {
+        if (key !== 'country'){
+            html += `<p>${textMap[key]}: ${row[key]}</p>`
+        }
+    })
+    div.innerHTML = html
 }
 
 const createSlider = (factor, min, max) => {
@@ -44,8 +88,6 @@ const createSlider = (factor, min, max) => {
             const split = values.split(',')
             filterValues[factor].min = split[0]
             filterValues[factor].max = split[1]
-            console.log(split[0])
-            console.log(split[1])
             colorMap()
         }
     })
@@ -71,10 +113,10 @@ const colorMap = () => {
     legend({color: colorScale, title: textMap[active_factor]})
 
     const filteredData = filterData()
-    $('path').css('fill', '#ececec')
+    $('svg[id="map"]>path').css('fill', '#ececec')
 
     filteredData.forEach(entry => {
-        $(`path[name="${entry.country}"]`).css('fill', colorScale(entry[active_factor]))
+        $(`svg[id="map"]>path[name="${entry.country}"]`).css('fill', colorScale(entry[active_factor]))
     })
 }
 
