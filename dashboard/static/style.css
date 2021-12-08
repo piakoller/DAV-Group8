@@ -252,9 +252,9 @@ body {
       text-shadow: none;
     }
 
-path:hover {
+/* path:hover {
     fill: #F4B400;
-  }
+  } */
 #legend{
   /* position: absolute; */
   top: 5%;
