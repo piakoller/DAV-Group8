@@ -82,8 +82,8 @@ body {
   height: 550px;
   border-radius: 15px;
   /*display: flex;
-  flex-direction: column;
   align-items: center;*/
+  flex-direction: column;
   width: 100%;
   background-color: #ffffff;
   margin-bottom: 20px;
@@ -95,8 +95,12 @@ body {
 }
 
 .ridge-plot{
-  height: 100%;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -5%;
+  /* position: absolute; */
+  /* padding-right: 5%; */
 }
 
 
@@ -147,7 +151,7 @@ body {
   
   .dropdown {
     position: absolute;
-    top:90%;
+    top:95%;
     right: 5%;
     display: inline-block;
     z-index: 2;
@@ -232,14 +236,14 @@ body {
 
 .selectBoxes2 {
   height: 230px;
-  justify-content: space-between;
-  position:  relative;
-  top: 165px;
+  /* justify-content: space-between; */
+  position:  absolute;
+  /* top: 165px; */
 }
 
-.selectBox2 {
+/* .selectBox2 {
   height: 100px;
-}
+} */
 
 label {
   color: black;
@@ -249,9 +253,10 @@ label {
   stroke: #B8B8B8;
 }
 .bubble{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  /* display: block; */
+  padding-left: 9%;
+  position: relative;
+  transform: scale(0.75);
 }
 .world {
   font-size: 20pt;
@@ -278,7 +283,7 @@ select {
   font-weight: bold;
   cursor: pointer;
   border-radius: 0;
-  background-color: #DB4437;
+  background-color: #e16459;
   border: 2px solid #962d22;
   color: white;
   padding: 10px;
@@ -294,7 +299,7 @@ label {
   font-weight: bold;
   cursor: pointer;
   border-radius: 0;
-  background-color: #e16459;
+  background-color: #DB4437;
   border: none;
   color: white;
   padding: 10px;
@@ -307,5 +312,5 @@ label {
 
 .radarchart{
   position: relative;
-  left: 27%;
+  left: 20%;
 } 
