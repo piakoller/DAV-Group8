@@ -102,6 +102,9 @@ body {
   /* position: absolute; */
   /* padding-right: 5%; */
 }
+.tick{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 
 
@@ -283,9 +286,9 @@ select {
   font-weight: bold;
   cursor: pointer;
   border-radius: 0;
-  background-color: #e16459;
+  background-color: #ffffff;
   border: 2px solid #962d22;
-  color: white;
+  color: #DB4437;
   padding: 10px;
   appearance: none;
   -webkit-appearance: none;
@@ -308,6 +311,7 @@ label {
   -moz-appearance: none;
   padding: 10px;
   display: flex;
+  text-shadow: rgb(0, 0, 0) 0.05em 0.05em 0.1em;
 }
 
 .radarchart{

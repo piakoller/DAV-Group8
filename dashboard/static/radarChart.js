@@ -92,32 +92,32 @@ radarChartOptions = {
 
 function RadarChart(id, data, filteredData, options) {
 
-  	let countries_list = data.map(d => d.country);
-  	countries_list = countries_list.sort();
+	let countries_list = data.map(d => d.country);
+	countries_list = countries_list.sort();
 
-  	var hdi_list = data.map(d => d.hdi);
-    var lifeexpectancy_list = data.map(d => d.lifeexpectancy);
-    var gni_list = data.map(d => d.gni);
-    var expected_schooling_list = data.map(d => d.expected_schooling);
-    var mean_schooling_list = data.map(d => d.mean_schooling);
-    var population_list = data.map(d => d.population);
-    var unemployment_list = data.map(d => d.unemployment);
-    var happiness_list = data.map(d => d.happiness);
+	var hdi_list = data.map(d => d.hdi);
+	var lifeexpectancy_list = data.map(d => d.lifeexpectancy);
+	var gni_list = data.map(d => d.gni);
+	var expected_schooling_list = data.map(d => d.expected_schooling);
+	var mean_schooling_list = data.map(d => d.mean_schooling);
+	var population_list = data.map(d => d.population);
+	var unemployment_list = data.map(d => d.unemployment);
+	var happiness_list = data.map(d => d.happiness);
 
 
-  	var country1 = document.getElementById("country1");
-  	var country2 = document.getElementById("country2");
+	var country1 = document.getElementById("country1");
+	var country2 = document.getElementById("country2");
 
-  	if(country1.options.length == 0) {
-		for(var index=0;index<countries_list.length;index++) {
-		  country1.options[country1.options.length] = new Option(countries_list[index], countriesMap[countries_list[index]]);
-		  country2.options[country2.options.length] = new Option(countries_list[index], countriesMap[countries_list[index]]);
+	if (country1.options.length == 0) {
+		for (var index = 0; index < countries_list.length; index++) {
+			country1.options[country1.options.length] = new Option(countries_list[index], countriesMap[countries_list[index]]);
+			country2.options[country2.options.length] = new Option(countries_list[index], countriesMap[countries_list[index]]);
 		}
 
 		country1.value = 0;
 		country2.value = 40;
 
-  	}
+	}
 
 	var cfg = {
 		w: 500,				//Width of the circle
@@ -145,7 +145,7 @@ function RadarChart(id, data, filteredData, options) {
 
 	var newArray = [];
 
-   	let total_hdi = 0;
+	let total_hdi = 0;
 	let total_lifeexpectancy = 0;
 	let total_gni = 0;
 	let total_expected_schooling = 0;
@@ -343,7 +343,7 @@ function RadarChart(id, data, filteredData, options) {
 	//Append the labels at each axis
 	axis.append("text")
 		.attr("class", "legend")
-		.style("font-size", "12pt")
+		.style("font-size", "11pt")
 		.attr("text-anchor", "middle")
 		.attr("fill", "#737373")
 		.attr("dy", "0.35em")
