@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+    <link rel="stylesheet" href="/static/rSlider.min.css" />
+    <title>DAV Group 8 Project</title>
+  </head>
+
+  <body>
+    <!-- <h1>DAV GROUP 8 PROJECT</h1> -->
+
+    <div class="grid-container">
+      <button class="openbtn" onclick="openNav()">☰ Filter</button>
+      <div class="header">
+        <h1>
+          <i class="fas fa-cloud-sun"></i>
+          Happiness
+        </h1>
+        <p>Visualization of happiness and its factors in Europe</p>
+      </div>
+
+      <script>
+        function openNav() {
+          document.getElementById("sidebar").style.width = "280px";
+          document.getElementById("main").style.marginLeft = "280px";
+        }
+
+        function closeNav() {
+          document.getElementById("sidebar").style.width = "0";
+          document.getElementById("main").style.marginLeft = "0";
+        }
+      </script>
+
+      <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <div id="slider-container"></div>
+      </div>
+
+      <div id="main">
+      <main class="geospatial">
+        <script
+          src="https://code.jquery.com/jquery-3.6.0.min.js"
+          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+          crossorigin="anonymous"
+        ></script>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="/static/maps.js"></script>
+        <script src="/static/legend.js"></script>
+        <script src="/static/rSlider.min.js"></script>
+        <script src="/static/rounding.js"></script>
+        <script src="/static/main.js"></script>
+        <div class="main-graph">
+          <div class="graph">
+            <div class="world">Happiness in the World</div>
+            <div class="ridge-plot"></div>
+            <script src="/static/ridgePlot.js"></script>
+          </div>
+          <div class="graph">
+            <div class="selectBoxes1">
+              <div class="selectBox1">
+                <label for="country1">Select Country #1</label>
+                <select name="country1" id="country1"></select>
+              </div>
+              <div class="selectBox1">
+                <label for="country2">Select Country #2</label>
+                <select name="country2" id="country2"></select>
+              </div>
+            </div>
+
+            <div class="radarChart"></div>
+            <script src="/static/radarChart.js"></script>
+          </div>
+        </div>
+
+        <div class="geospatial-header">
+          <div class="geospatial-header__heading">
+            <div id="slider-container"></div>
+          </div>
+          <div class="geospatial-overview" id="tooltips">
+            <div class="dropdown">
+              <button class="dropbtn">Choose a factor</button>
+              <div class="dropdown-content">
+                <a href="#" id="gdp">Logged GDP per capita</a>
+                <a href="#" id="social-support">Social Support</a>
+                <a href="#" id="healthy-life-expectancy"
+                  >Healthy Life Expectancy</a
+                >
+                <a href="#" id="choices">Freedom to Make Life Choices</a>
+                <a href="#" id="generosity">Generosity</a>
+                <a href="#" id="corruption">Perception of Corruption</a>
+                <a href="#" id="hdi">Human Development Index</a>
+                <a href="#" id="lifeexpectancy">Life Expectancy (years)</a>
+                <a href="#" id="gni">GNI (dollar / captita)</a>
+                <a href="#" id="expected-schooling"
+                  >Expected Years of Schooling</a
+                >
+                <a href="#" id="mean-schooling">Mean Years of Schooling</a>
+                <a href="#" id="population"
+                  >Population Density (people / km²)</a
+                >
+                <a href="#" id="unemployment">Unemployment rate (%)</a>
+                <a href="#" id="happiness">Happiness Score</a>
+              </div>
+            </div>
+
+            {{svg}}
+
+            <svg id="legend"></svg>
+          </div>
+        </div>
+
+        <div class="geospatial-header">
+          <div class="bubble" id="bubble">
+            <script src="/static/bubbleplot.js"></script>
+          <div class="selectBoxes2">
+            <div class="selectBox2">
+              <label for="yFeature">Feature for Y-Axis</label>
+              <select name="yFeature" id="yFeature"></select>
+            </div>
+            <div class="selectBox2">
+              <label for="xFeature">Feature for X-Axis</label>
+              <select name="xFeature" id="xFeature"></select>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      </main>
+      <footer class="footer">
+        <p>
+          DAV Group Project Team 8 - by Clément Bernier, Dennis Ledwon, Florian
+          Brandl and Pia Koller
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

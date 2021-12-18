@@ -1,0 +1,417 @@
+h1 {
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #eeeeee;
+  /* box-sizing: border-box; */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  height: 100vh;
+}
+
+/* Assign grid instructions to our parent grid container, mobile-first (hide the sidenav) */
+.grid-container {
+  /* display: grid; */
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  height: 100vh;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  font-size: 13px !important;
+  /* padding-left: 5%; */
+  top: 0;
+  left: 0;
+  padding-top: 60px;
+  background-color: #db4437;
+  /* box-shadow: 0px 8px 10px 10px rgba(0, 0, 0, 0.3) !important; */
+  z-index: 10;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+#slider-container {
+  margin-left: 15px;
+}
+
+/* @media screen and (max-height: 450px) {
+  .sidebar {
+    padding-top: 15px;
+    display: none;
+  }
+  .sidebar a {
+    font-size: 18px;
+  }
+} */
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  top: 15px;
+  font-size: 20px;
+  position: fixed;
+  cursor: pointer;
+  background-color: #db4437;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  float: left;
+  z-index: 20;
+  text-shadow: rgb(0, 0, 0) 0.05em 0.05em 0.1em;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+.body-text {
+  margin-left: 150px;
+  font-size: 18px;
+}
+
+.header {
+  padding: 15px;
+  text-align: center;
+  background: #f4b400;
+  text-shadow: rgb(0, 0, 0) 0.05em 0.05em 0.1em;
+  color: white;
+  font-size: 14pt;
+  /* box-shadow: 0px 8px 10px 10px rgba(0, 0, 0, 0.3) !important; */
+  z-index: 15;
+}
+
+#main {
+  transition: margin-left 0.5s;
+}
+
+.geospatial {
+  padding: 5px;
+  grid-area: main;
+  background-color: #eeeeee;
+}
+
+.geospatial-header {
+  /* font-size: 10pt !important; */
+  display: flex;
+  /* justify-content: space-between; */
+  margin: 20px;
+  padding: 20px;
+  /* height: 100%; */
+  width: auto;
+  object-fit: contain;
+  background-color: #ffffff;
+  color: slategray;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+}
+
+.geospatial-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+  /* grid-auto-rows: 94px; */
+  /* grid-gap: 20px;
+  margin: 20px; */
+}
+
+.overviewcard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #d3d3;
+}
+
+.main-graph {
+  column-count: 1;
+  column-gap: 20px;
+  margin: 20px;
+}
+
+.graph {
+  height: 550px;
+  border-radius: 15px;
+  /*display: flex;
+  align-items: center;*/
+  flex-direction: column;
+  width: 100%;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  -webkit-column-break-inside: avoid;
+  padding: 24px;
+  box-sizing: border-box;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  color: black;
+}
+
+.ridge-plot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -5%;
+  /* position: absolute; */
+  /* padding-right: 5%; */
+}
+.tick {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Non-mobile styles, 750px breakpoint */
+@media only screen and (min-width: 46.875em) {
+  /* Show the sidenav */
+  .grid-container {
+    /* grid-template-columns: 240px 1fr; */
+    grid-template-areas:
+      "sidenav header"
+      "sidenav main"
+      "sidenav footer";
+  }
+
+  .header__search {
+    margin-left: 0;
+  }
+
+  .sidenav {
+    position: relative;
+    transform: translateX(0);
+  }
+
+  .sidenav__close-icon {
+    visibility: hidden;
+  }
+}
+
+/* Medium screens breakpoint (1050px) */
+@media only screen and (min-width: 65.625em) {
+  /* Break out main cards into two columns */
+  .main-graph {
+    column-count: 2;
+  }
+}
+
+.dropbtn {
+  background-color: #f4b400;
+  color: white;
+  text-shadow: rgb(0, 0, 0) 0.05em 0.05em 0.1em;
+  padding: 20px;
+  font-size: 16px !important;
+  border: none;
+  border-radius: 15px;
+  z-index: 2;
+}
+
+.dropdown {
+  position: absolute;
+  top: 95%;
+  right: 5%;
+  display: inline-block;
+  z-index: 2;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #f1f1f1;
+  color: black;
+  text-shadow: none;
+}
+
+/* path:hover {
+    fill: #F4B400;
+  } */
+#legend {
+  /* position: absolute; */
+  top: 5%;
+  right: 3%;
+}
+.maps {
+  transform: scale(1.1);
+}
+
+.country-tooltip {
+  /*width: auto;*/
+  max-height: 300px;
+  padding: 10px;
+  font-size: 12pt;
+  background-color: #ffffff;
+  /* border-radius: 6px; */
+  float: left;
+  position: absolute;
+  display: none;
+  overflow: auto;
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  z-index: 3;
+}
+.tooltip-title {
+  font-weight: bold;
+  font-size: 18pt !important;
+  text-align: center;
+  color: black;
+}
+
+.selectBoxes1 {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.selectBox1 {
+  width: 50%;
+  display: inline-block;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.selectBoxes2 {
+  height: 230px;
+  /* justify-content: space-between; */
+  position: fixed;
+  float: right;
+  left: 80%;
+  bottom: 95%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* .selectBox2 {
+  height: 100px;
+} */
+
+label {
+  color: black;
+}
+
+.xAxis line {
+  stroke: #b8b8b8;
+}
+
+.bubble {
+  display: block;
+  left: 15%;
+  /* position: fixed; */
+  transform: scale(0.85);
+  margin-top: 10%;
+}
+
+/* .bubble svg {
+  margin-top: 10%;
+  width: auto;
+  height: auto;
+} */
+
+/* @media geospatial-header and (max-width: 1100px) {
+  .bubble {
+    transform: scale(0.5);
+    padding-left: 0;
+  }
+} */
+
+.world {
+  font-size: 20pt;
+  font-weight: 450;
+}
+
+footer {
+  bottom: 0;
+  /* width: 100%; */
+  height: 2.5rem; /* Footer height */
+  padding: 20px;
+  text-align: center;
+  background: #f4b400;
+  text-shadow: rgb(0, 0, 0) 0.05em 0.05em 0.1em;
+  color: white;
+  font-size: 12pt;
+  /* box-shadow: 0px 8px 10px 10px rgba(0, 0, 0, 0.3) !important; */
+}
+
+select {
+  width: 100%;
+  height: 50px;
+  font-size: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0;
+  background-color: #ffffff;
+  border: 2px solid #962d22;
+  color: #db4437;
+  padding: 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 10px;
+  display: flex;
+}
+
+label {
+  font-size: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0;
+  background-color: #db4437;
+  border: none;
+  color: white;
+  padding: 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 10px;
+  display: flex;
+  text-shadow: rgb(0, 0, 0) 0.05em 0.05em 0.1em;
+}
+
+.radarchart {
+  position: relative;
+  left: 20%;
+}

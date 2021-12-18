@@ -97,8 +97,8 @@
     display: block;
 }
 .rs-container .rs-scale span:last-child {
-    margin-left: -1px;
-    width: 0px !important;
+    /* margin-left: -1px; */
+    width: -10px !important;
 }
 .rs-container .rs-scale span ins {
     color: #333;
